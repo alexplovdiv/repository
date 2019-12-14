@@ -2,6 +2,7 @@ package uni.fmi.st.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -18,6 +19,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
 @Entity(name = "User")
 @JsonIgnoreProperties({"posts", "password"})
 public class User implements Serializable {
@@ -39,6 +42,10 @@ public class User implements Serializable {
 			joinColumns = @JoinColumn(name = "user_id"),
 			inverseJoinColumns = @JoinColumn(name = "id"))
 	private Set<Role> roles;
+
+	@OneToMany(mappedBy="user", fetch = FetchType.LAZY,
+			cascade = CascadeType.ALL)
+	private List<Person> friends;
 
 
 	public User() {
@@ -121,6 +128,21 @@ public class User implements Serializable {
 
 	public void addPost(Post post) {
 		getPosts().add(post);
+	}
+
+	public List<Person> getFriends() {
+		if (null == friends) {
+			friends = new ArrayList<Person>();
+		}
+		return friends;
+	}
+
+	public void setFriends(List<Person> friends) {
+		this.friends = friends;
+	}
+
+	public void addFriend(Person person) {
+		getFriends().add(person);
 	}
 
 	/* (non-Javadoc)

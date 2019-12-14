@@ -182,6 +182,15 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<resources>
+       	<resource>
+           <directory>src/main/resources</directory>
+           <includes>
+               <include>application.properties</include>
+           </includes>
+           <!-- <targetPath>..</targetPath>   relative to target/classes -->
+       </resource>
+   	</resources>
 	</build>
 
 </project>

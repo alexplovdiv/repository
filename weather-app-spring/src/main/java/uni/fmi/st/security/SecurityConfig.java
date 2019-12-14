@@ -59,7 +59,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.hasAnyRole("ADMIN", "USER")*/
 		.antMatchers("/**").permitAll()
 		.requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()
-		.and().csrf().disable();
+		.and().csrf().disable().headers().frameOptions().disable()
+		;
 	}
 	
 	@Override

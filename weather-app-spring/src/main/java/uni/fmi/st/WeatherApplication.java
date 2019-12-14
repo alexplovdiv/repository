@@ -3,6 +3,7 @@ package uni.fmi.st;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
@@ -12,6 +13,7 @@ import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 @EnableJpaRepositories
 @SpringBootApplication
+@PropertySource("classpath:application.properties")
 public class WeatherApplication {
 
 	public static void main(String[] args) {
